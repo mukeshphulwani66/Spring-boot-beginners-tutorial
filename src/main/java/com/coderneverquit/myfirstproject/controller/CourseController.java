@@ -40,16 +40,24 @@ public class CourseController {
       }
       
     }
+    @GetMapping("/course/instructor/{name}")
+    public List<Course> findCourseByInst(@PathVariable("name") String name){
+        return courseService.findByCourseIntructor(name);
+    }
+    @GetMapping("/course/coursecontaining/{name}")
+    public List<Course> findCourseContaining(@PathVariable("name") String name){
+        return courseService.findByCourseContaining(name);
+    }
     @PutMapping("/courses/{cid}")
-    public List<Course> updateCourse(@PathVariable("cid") Integer courseID,@RequestBody Course updatedCourseData){
+    public String updateCourse(@PathVariable("cid") Integer courseID,@RequestBody Course updatedCourseData){
       return courseService.updateCourse(courseID, updatedCourseData);
     }
     @DeleteMapping("/courses/{cid}")
-    public List<Course> deleteCourse(@PathVariable("cid") Integer courseID){
+    public String deleteCourse(@PathVariable("cid") Integer courseID){
          return courseService.deleteCourse(courseID);
     }
     @PostMapping("/postcourse")
-    public List<Course> postCourse(@RequestBody Course course) throws Exception{
+    public String postCourse(@RequestBody Course course) throws Exception{
       try{
           return courseService.postCourse(course);
       }catch(Exception exception){
@@ -57,4 +65,6 @@ public class CourseController {
       }
     
     }
+
+
 }

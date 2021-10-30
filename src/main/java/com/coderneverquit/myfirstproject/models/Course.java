@@ -1,13 +1,31 @@
 package com.coderneverquit.myfirstproject.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tb_course")
 public class Course {
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
    private Integer courseID;
+
+   @Column(name = "course_n",nullable = false)
    private String courseName;
+   @Column(name = "course_i",nullable = false)
    private String courseIntructor;
+   
     public Course(Integer courseID, String courseName, String courseIntructor) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.courseIntructor = courseIntructor;
+    }
+    public Course(){
+
     }
     public Integer getCourseID() {
         return courseID;
